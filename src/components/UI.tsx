@@ -1,64 +1,68 @@
+import { useState, useMemo } from 'react';
 import { planetsData } from '../data/planetsData';
-import { PlanetData } from '../types';
 
 interface UIProps {
-  selectedPlanet: string | null;
-  onPlanetSelect: (name: string) => void;
-  viewMode: 'free' | 'follow';
-  onViewModeChange: (mode: 'free' | 'follow') => void;
+  onPlanetSearch: (name: string | null) => void;
 }
 
-export function UI({ selectedPlanet, onPlanetSelect, viewMode, onViewModeChange }: UIProps) {
-  const selectedPlanetData = planetsData.find(p => p.name === selectedPlanet);
+export function UI({ onPlanetSearch }: UIProps) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const filteredPlanets = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    return planetsData.filter(planet =>
+      planet.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    setShowSuggestions(value.trim().length > 0);
+
+    if (!value.trim()) {
+      onPlanetSearch(null);
+    }
+  };
+
+  const handleSuggestionClick = (planetName: string) => {
+    setSearchQuery(planetName);
+    setShowSuggestions(false);
+    onPlanetSearch(planetName);
+  };
+
+  const handleSearchBlur = () => {
+    setTimeout(() => setShowSuggestions(false), 200);
+  };
 
   return (
     <div className="ui-overlay">
-      <h1 className="title">EYES ON SPACE</h1>
+      <h1 className="title">SPACE ENCYCLOPEDIA</h1>
 
-      <div className="planet-list">
-        <h3>Celestial Bodies</h3>
-        {planetsData.map((planet: PlanetData) => (
-          <div
-            key={planet.name}
-            className={`planet-item ${selectedPlanet === planet.name ? 'selected' : ''}`}
-            onClick={() => onPlanetSelect(planet.name)}
-          >
-            <strong>{planet.name}</strong>
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search for planets..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          onFocus={() => searchQuery.trim() && setShowSuggestions(true)}
+          onBlur={handleSearchBlur}
+        />
+        {showSuggestions && filteredPlanets.length > 0 && (
+          <div className="search-suggestions">
+            {filteredPlanets.map((planet) => (
+              <div
+                key={planet.name}
+                className="search-suggestion-item"
+                onClick={() => handleSuggestionClick(planet.name)}
+              >
+                {planet.name}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      {selectedPlanetData && (
-        <div className="planet-info">
-          <h2>{selectedPlanetData.name}</h2>
-          <p className="label">Description</p>
-          <p>{selectedPlanetData.description}</p>
-          <p className="label">Mass</p>
-          <p>{selectedPlanetData.mass}</p>
-          <p className="label">Diameter</p>
-          <p>{selectedPlanetData.diameter}</p>
-          {selectedPlanetData.moons !== undefined && (
-            <>
-              <p className="label">Moons</p>
-              <p>{selectedPlanetData.moons}</p>
-            </>
-          )}
-        </div>
-      )}
-
-      <div className="controls">
-        <button
-          className={`control-btn ${viewMode === 'free' ? 'active' : ''}`}
-          onClick={() => onViewModeChange('free')}
-        >
-          Free Camera
-        </button>
-        <button
-          className={`control-btn ${viewMode === 'follow' ? 'active' : ''}`}
-          onClick={() => onViewModeChange('follow')}
-        >
-          Follow View
-        </button>
+        )}
       </div>
 
       <div className="instructions">

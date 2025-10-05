@@ -6,9 +6,10 @@ import { SolarSystem } from './SolarSystem';
 interface SceneProps {
   selectedPlanet: string | null;
   onPlanetClick: (name: string) => void;
+  searchHighlightedPlanet: string | null;
 }
 
-export function Scene({ selectedPlanet, onPlanetClick }: SceneProps) {
+export function Scene({ selectedPlanet, onPlanetClick, searchHighlightedPlanet }: SceneProps) {
   return (
     <Canvas
       camera={{ position: [0, 50, 80], fov: 60 }}
@@ -20,7 +21,11 @@ export function Scene({ selectedPlanet, onPlanetClick }: SceneProps) {
       <pointLight position={[0, 0, 0]} intensity={2} distance={100} decay={2} />
 
       <Starfield />
-      <SolarSystem selectedPlanet={selectedPlanet} onPlanetClick={onPlanetClick} />
+      <SolarSystem
+        selectedPlanet={selectedPlanet}
+        onPlanetClick={onPlanetClick}
+        searchHighlightedPlanet={searchHighlightedPlanet}
+      />
 
       <OrbitControls
         enablePan={true}

@@ -39,105 +39,60 @@ body {
 .title {
   position: absolute;
   top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 40px;
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 300;
   letter-spacing: 4px;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  pointer-events: auto;
+  pointer-events: none;
 }
 
-.controls {
+.search-container {
   position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 15px;
+  top: 30px;
+  right: 40px;
   pointer-events: auto;
 }
 
-.control-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.search-input {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 12px 20px;
   color: #fff;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
+  width: 300px;
+  outline: none;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
 
-.control-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.control-btn.active {
-  background: rgba(100, 180, 255, 0.3);
-  border-color: rgba(100, 180, 255, 0.6);
+.search-input:focus {
+  border-color: rgba(138, 43, 226, 0.6);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
 }
 
-.planet-info {
+.search-suggestions {
   position: absolute;
-  top: 100px;
-  right: 40px;
-  background: rgba(0, 0, 0, 0.7);
+  top: 50px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
-  padding: 20px;
-  color: #fff;
-  min-width: 250px;
-  pointer-events: auto;
-  backdrop-filter: blur(10px);
-}
-
-.planet-info h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  font-weight: 400;
-}
-
-.planet-info p {
-  margin: 8px 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.planet-info .label {
-  color: #888;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.planet-list {
-  position: absolute;
-  top: 100px;
-  left: 40px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  color: #fff;
-  pointer-events: auto;
-  backdrop-filter: blur(10px);
-  max-height: 70vh;
+  padding: 10px;
+  width: 300px;
+  max-height: 300px;
   overflow-y: auto;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
-.planet-list h3 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  font-weight: 400;
-}
-
-.planet-item {
+.search-suggestion-item {
   padding: 10px;
   margin: 5px 0;
   background: rgba(255, 255, 255, 0.05);
@@ -145,18 +100,15 @@ body {
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: #fff;
 }
 
-.planet-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateX(5px);
+.search-suggestion-item:hover {
+  background: rgba(138, 43, 226, 0.2);
+  border-color: rgba(138, 43, 226, 0.5);
+  transform: translateX(-5px);
 }
 
-.planet-item.selected {
-  background: rgba(100, 180, 255, 0.2);
-  border-color: rgba(100, 180, 255, 0.5);
-}
 
 .instructions {
   position: absolute;

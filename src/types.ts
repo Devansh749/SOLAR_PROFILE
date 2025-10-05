@@ -5,6 +5,7 @@ export interface PlanetData {
   orbitSpeed: number;
   rotationSpeed: number;
   color: string;
+  orbitColor: string;
   texture?: string;
   description: string;
   mass: string;

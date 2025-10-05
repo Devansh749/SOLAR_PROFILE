@@ -7,10 +7,10 @@ export function Starfield() {
 
   const particles = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 5000; i++) {
-      const x = (Math.random() - 0.5) * 300;
-      const y = (Math.random() - 0.5) * 300;
-      const z = (Math.random() - 0.5) * 300;
+    for (let i = 0; i < 15000; i++) {
+      const x = (Math.random() - 0.5) * 400;
+      const y = (Math.random() - 0.5) * 400;
+      const z = (Math.random() - 0.5) * 400;
       temp.push(x, y, z);
     }
     return new Float32Array(temp);
@@ -21,9 +21,10 @@ export function Starfield() {
       <PointMaterial
         transparent
         color="#ffffff"
-        size={0.3}
+        size={0.2}
         sizeAttenuation={true}
         depthWrite={false}
+        opacity={0.3}
       />
     </Points>
   );
