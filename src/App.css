@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #000;
+}
+
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.title {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  pointer-events: auto;
+}
+
+.controls {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  pointer-events: auto;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.control-btn.active {
+  background: rgba(100, 180, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.6);
+}
+
+.planet-info {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;
+  min-width: 250px;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+}
+
+.planet-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.planet-info p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.planet-info .label {
+  color: #888;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.planet-list {
+  position: absolute;
+  top: 100px;
+  left: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.planet-list h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.planet-item {
+  padding: 10px;
+  margin: 5px 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.planet-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
+}
+
+.planet-item.selected {
+  background: rgba(100, 180, 255, 0.2);
+  border-color: rgba(100, 180, 255, 0.5);
+}
+
+.instructions {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.instructions p {
+  margin: 4px 0;
+}
